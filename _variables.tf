@@ -3,7 +3,7 @@ variable "enabled" {
   default = true
 }
 
-variable "cluster_name" {
+variable "eks_cluster_name" {
   type        = string
   description = "The name of the cluster"
 }
