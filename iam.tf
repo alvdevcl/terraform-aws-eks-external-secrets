@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "kubernetes_external_secrets" {
 resource "aws_iam_policy" "kubernetes_external_secrets" {
   depends_on  = [var.mod_dependency]
   count       = var.enabled ? 1 : 0
-  name        = "${var.cluster_name}-external-secrets"
+  name        = "${var.eks_cluster_name}-external-secrets"
   path        = "/"
   description = "Policy for external secrets service"
 
@@ -64,7 +64,7 @@ data "aws_iam_policy_document" "kubernetes_external_secrets_assume" {
 
 resource "aws_iam_role" "kubernetes_external_secrets" {
   count              = var.enabled ? 1 : 0
-  name               = "${var.cluster_name}-external-secrets"
+  name               = "${var.eks_cluster_name}-external-secrets"
   assume_role_policy = data.aws_iam_policy_document.kubernetes_external_secrets_assume[0].json
 }
 
